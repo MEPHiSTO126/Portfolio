@@ -1,0 +1,119 @@
+/* ── About Section ── */
+
+.about {
+  position: relative;
+  z-index: 1;
+  padding: var(--section-padding);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.about-text h2 {
+  margin-bottom: 24px;
+}
+
+.about-text p {
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.about-text p .inline-highlight {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ── Current Focus Badge ── */
+
+.current-focus {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 12px 20px;
+  background: var(--accent-green-dim);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-green);
+}
+
+.current-focus .pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 8px rgba(57, 255, 20, 0); }
+}
+
+/* ── Tech Stack Grid ── */
+
+.about-tech h3 {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.tech-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 12px;
+  background: var(--bg-card);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-medium);
+  cursor: default;
+}
+
+.tech-card:hover {
+  border-color: var(--accent-border);
+  box-shadow: var(--glow);
+  transform: translateY(-4px);
+  background: var(--bg-card-hover);
+}
+
+.tech-card svg,
+.tech-card img {
+  width: 36px;
+  height: 36px;
+}
+
+.tech-card span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,35 @@
+/* ── Projects Section ── */
+
+.projects {
+  position: relative;
+  z-index: 1;
+  padding: var(--section-padding);
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.projects-header h2 {
+  margin-bottom: 12px;
+}
+
+.projects-header p {
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
