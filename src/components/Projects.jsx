@@ -19,12 +19,12 @@ const projects = [
     live: 'https://chrono-url.vercel.app/',
   },
   {
-    title: 'HLR Network Simulator',
+    title: 'Chess',
     description:
-      'A GSM network simulation platform implementing complex challenge-response authentication protocols and CDR billing logic. Features a dark NOC-style dashboard for real-time subscriber management and call flow visualization.',
-    tags: ['JavaScript', 'GSM', 'Authentication', 'Simulation'],
-    repo: 'https://github.com/MEPHiSTO126/HLR-Network-Simulator',
-    live: 'https://hlr-sim.vercel.app/',
+      'A fully-featured browser-based chess game built with zero libraries — pure HTML, CSS, and JavaScript. Implements the complete rule set including castling, en passant, pawn promotion, and check/checkmate/stalemate detection, with a premium dark glassmorphism UI and animated gold-gradient board.',
+    tags: ['JavaScript', 'HTML5', 'CSS', 'Vanilla JS'],
+    repo: 'https://github.com/MEPHiSTO126/Chess',
+    live: 'https://mephisto126.github.io/Chess',
   },
   {
     title: 'Dynamic Weather Dashboard',
