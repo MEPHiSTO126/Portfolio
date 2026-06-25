@@ -45,7 +45,11 @@ export default function Projects() {
     <section className="projects" id="projects">
       <div className="container">
         <div className="projects-header reveal">
-          <p className="section-label" style={{ justifyContent: 'center' }}>Projects</p>
+          <p className="section-label" style={{ justifyContent: 'center' }}>
+            <span className="label-tag-open">&lt;</span>
+            Projects
+            <span className="label-tag-close">/&gt;</span>
+          </p>
           <h2>Things I've Built</h2>
           <p>A selection of projects that showcase my skills in frontend development, API integration, and responsive design.</p>
         </div>

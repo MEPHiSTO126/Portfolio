@@ -34,7 +34,7 @@
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   transition: color var(--transition-fast);
 }
 
@@ -42,9 +42,15 @@
   color: var(--accent);
 }
 
-.navbar-logo .logo-bracket {
-  color: var(--accent);
-  font-weight: 400;
+.navbar-logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--transition-medium);
+}
+
+.navbar-logo:hover .navbar-logo-img {
+  transform: rotate(-8deg) scale(1.08);
 }
 
 .navbar-links {

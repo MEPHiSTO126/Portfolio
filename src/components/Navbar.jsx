@@ -25,9 +25,8 @@ export default function Navbar() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} id="navbar">
         <div className="navbar-inner">
           <a href="#" className="navbar-logo">
-            <span className="logo-bracket">&lt;</span>
-            Olaoluwa
-            <span className="logo-bracket">/&gt;</span>
+            <img src="/projects/white-logo.png" alt="Olaoluwa Logo" className="navbar-logo-img" />
+            <span>Olaoluwa</span>
           </a>
 
           <ul className="navbar-links">

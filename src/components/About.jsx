@@ -132,7 +132,11 @@ export default function About() {
       <div className="container">
         <div className="about-grid">
           <div className="about-text reveal">
-            <p className="section-label">About Me</p>
+            <p className="section-label">
+              <span className="label-tag-open">&lt;</span>
+              About Me
+              <span className="label-tag-close">/&gt;</span>
+            </p>
             <h2>Building the web,<br />one component at a time.</h2>
             <p>
               I'm a <span className="inline-highlight">400-level Computer Science student</span> at 

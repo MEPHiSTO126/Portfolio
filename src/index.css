@@ -155,14 +155,23 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 12px;
+  cursor: default;
 }
 
-.section-label::before {
-  content: '';
+.label-tag-open,
+.label-tag-close {
   display: inline-block;
-  width: 30px;
-  height: 1px;
-  background: var(--accent);
+  transition: transform var(--transition-fast);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.section-label:hover .label-tag-open {
+  transform: translateX(-6px);
+}
+
+.section-label:hover .label-tag-close {
+  transform: translateX(6px);
 }
 
 .gradient-text {

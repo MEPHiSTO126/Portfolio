@@ -48,7 +48,11 @@ export default function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-info reveal">
-            <p className="section-label">Contact</p>
+            <p className="section-label">
+              <span className="label-tag-open">&lt;</span>
+              Contact
+              <span className="label-tag-close">/&gt;</span>
+            </p>
             <h2>Let's Work<br />Together.</h2>
             <p>Got a project in mind or just want to connect? I'm always open to discussing new opportunities and ideas.</p>
 

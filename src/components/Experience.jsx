@@ -24,7 +24,11 @@ export default function Experience() {
     <section className="experience" id="experience">
       <div className="container">
         <div className="experience-header reveal">
-          <p className="section-label" style={{ justifyContent: 'center' }}>Experience</p>
+          <p className="section-label" style={{ justifyContent: 'center' }}>
+            <span className="label-tag-open">&lt;</span>
+            Experience
+            <span className="label-tag-close">/&gt;</span>
+          </p>
           <h2>Where I've Worked</h2>
           <p>Professional experience in telecommunications, networking, and IT operations.</p>
         </div>
