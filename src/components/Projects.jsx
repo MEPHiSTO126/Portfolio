@@ -9,6 +9,7 @@ const projects = [
     tags: ['React', 'Tailwind CSS', 'Responsive', 'Multi-page'],
     repo: 'https://github.com/MEPHiSTO126/Scoot',
     live: 'https://scoot-lilac.vercel.app/',
+    image: '/projects/scoot-ss.png',
   },
   {
     title: 'Anikronos — URL Shortener',
@@ -17,6 +18,7 @@ const projects = [
     tags: ['React', 'Vite', 'REST API', 'Animations'],
     repo: 'https://github.com/MEPHiSTO126/URLshortener',
     live: 'https://chrono-url.vercel.app/',
+    image: '/projects/url-ss.png',
   },
   {
     title: 'Chess',
@@ -25,6 +27,7 @@ const projects = [
     tags: ['JavaScript', 'HTML5', 'CSS', 'Vanilla JS'],
     repo: 'https://github.com/MEPHiSTO126/Chess',
     live: 'https://mephisto126.github.io/Chess',
+    image: '/projects/chess-ss.png',
   },
   {
     title: 'Dynamic Weather Dashboard',
@@ -33,6 +36,7 @@ const projects = [
     tags: ['JavaScript', 'REST API', 'Async/Await', 'DOM'],
     repo: 'https://github.com/MEPHiSTO126/Weather',
     live: 'https://mephisto126.github.io/Weather/',
+    image: '/projects/weather-ss.png',
   },
 ];
 

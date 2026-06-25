@@ -1,13 +1,27 @@
 /* ── Project Card ── */
 
 .project-card {
-  background: var(--bg-card);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--border-radius);
   padding: 32px;
   transition: all var(--transition-medium);
   position: relative;
   overflow: hidden;
+  z-index: 1; /* Create stacking context for pseudo backgrounds */
+}
+
+/* Base solid background layer below the image */
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bg-card);
+  z-index: -2;
+  transition: background var(--transition-medium);
+}
+
+.project-card:hover::after {
+  background: var(--bg-card-hover);
 }
 
 .project-card::before {
@@ -20,17 +34,49 @@
   background: linear-gradient(90deg, var(--accent), var(--accent-purple));
   opacity: 0;
   transition: opacity var(--transition-medium);
+  z-index: 2; /* Sits on top */
 }
 
 .project-card:hover {
   border-color: var(--accent-border);
   box-shadow: var(--glow), var(--card-shadow);
   transform: translateY(-6px);
-  background: var(--bg-card-hover);
 }
 
 .project-card:hover::before {
   opacity: 1;
+}
+
+/* Background image overlay layer */
+.project-card-image-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center top;
+  opacity: 0.06; /* Keep it subtle so content is easily readable */
+  filter: grayscale(40%) contrast(1.1);
+  transition: opacity var(--transition-medium), transform var(--transition-slow), filter var(--transition-medium);
+  pointer-events: none;
+}
+
+.project-card:hover .project-card-image-bg {
+  opacity: 0.16; /* Fades in slightly more on hover */
+  transform: scale(1.06); /* Subtle zoom in */
+  filter: grayscale(0%) contrast(1.2);
+}
+
+/* Fallback gradient if no screenshot is set */
+.project-card-image-bg.fallback-gradient {
+  background: radial-gradient(circle at 80% 20%, rgba(0, 229, 255, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+  opacity: 0.8;
+}
+
+.project-card:hover .project-card-image-bg.fallback-gradient {
+  opacity: 1;
+  background: radial-gradient(circle at 80% 20%, rgba(0, 229, 255, 0.09) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.09) 0%, transparent 50%);
 }
 
 .project-card-header {
