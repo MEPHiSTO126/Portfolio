@@ -9,7 +9,7 @@ export default function Hero() {
           <span className="gradient-text">Ilugbaro Olaoluwa</span>
         </h1>
         <p className="hero-title">
-          <span className="highlight">Frontend Developer</span> | Computer Science Student
+          <span className="highlight">Software Engineer</span> | Computer Science Student
         </p>
         <p className="hero-description">
           I craft responsive, pixel-perfect web experiences with clean code and 
