@@ -144,10 +144,10 @@ export default function About() {
               web applications</span> using React.js and JavaScript. My approach emphasizes clean code 
               architecture, pixel-perfect design implementation, and performance optimization.
             </p>
-            <div className="current-focus">
+            {/* <div className="current-focus">
               <div className="pulse-dot"></div>
               Currently exploring Node.js &amp; backend concepts — scaling into full-stack development
-            </div>
+            </div> */}
           </div>
 
           <div className="about-tech reveal reveal-delay-2">
