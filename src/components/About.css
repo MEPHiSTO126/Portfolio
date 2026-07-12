@@ -83,6 +83,7 @@
   border-radius: var(--border-radius);
   transition: all var(--transition-medium);
   cursor: default;
+  position: relative;
 }
 
 .tech-card:hover {
@@ -90,6 +91,46 @@
   box-shadow: var(--glow);
   transform: translateY(-4px);
   background: var(--bg-card-hover);
+  z-index: 10;
+}
+
+@keyframes vibrate {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-1px, 0.5px) rotate(-0.5deg); }
+  20% { transform: translate(1px, -0.5px) rotate(0.5deg); }
+  30% { transform: translate(-0.5px, 1px) rotate(0deg); }
+  40% { transform: translate(0.5px, -1px) rotate(0.5deg); }
+  50% { transform: translate(-1px, 0.5px) rotate(-0.5deg); }
+  60% { transform: translate(1px, -0.5px) rotate(0deg); }
+  70% { transform: translate(-0.5px, 1px) rotate(0.5deg); }
+  80% { transform: translate(0.5px, -1px) rotate(-0.5deg); }
+  90% { transform: translate(-1px, -0.5px) rotate(0deg); }
+}
+
+@keyframes puffOut {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes puffIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.tech-card.vibrate {
+  animation: vibrate 0.6s ease-in-out;
+}
+
+.tech-card.puff-out {
+  animation: puffOut 0.4s ease-in-out forwards;
+}
+
+.tech-card.puff-in {
+  animation: puffIn 0.4s ease-in-out forwards;
+}
+
+.tech-card.swapping {
+  transition: transform 0.4s ease-in-out;
 }
 
 .tech-card svg,

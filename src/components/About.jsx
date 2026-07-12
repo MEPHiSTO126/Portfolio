@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import './About.css';
 
 const techStack = [
@@ -131,6 +132,128 @@ const techStack = [
 ];
 
 export default function About() {
+  const techGridRef = useRef(null);
+
+  useEffect(() => {
+    const grid = techGridRef.current;
+    if (!grid) return;
+
+    let cycleTimeout;
+    let isAnimating = false;
+
+    const getCards = () => Array.from(grid.querySelectorAll('.tech-card'));
+
+    const shuffleArray = (array) => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
+    const createPairs = (cards) => {
+      const shuffled = shuffleArray(cards);
+      const pairs = [];
+      for (let i = 0; i < shuffled.length; i += 2) {
+        if (i + 1 < shuffled.length) {
+          pairs.push([shuffled[i], shuffled[i + 1]]);
+        } else {
+          pairs.push([shuffled[i]]);
+        }
+      }
+      return pairs;
+    };
+
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    const vibrateAll = (cards) => {
+      cards.forEach(card => card.classList.add('vibrate'));
+      return sleep(600).then(() => {
+        cards.forEach(card => card.classList.remove('vibrate'));
+      });
+    };
+
+    const puffOut = (cards) => {
+      cards.forEach(card => card.classList.add('puff-out'));
+      return sleep(400).then(() => {
+        cards.forEach(card => {
+          card.classList.remove('puff-out');
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0)';
+        });
+      });
+    };
+
+    const swapPositions = (cardA, cardB) => {
+      const parent = cardA.parentNode;
+      const nextA = cardA.nextSibling;
+      const nextB = cardB.nextSibling;
+
+      if (nextA === cardB) {
+        parent.insertBefore(cardB, cardA);
+      } else if (nextB === cardA) {
+        parent.insertBefore(cardA, cardB);
+      } else {
+        parent.insertBefore(cardA, nextB);
+        parent.insertBefore(cardB, nextA);
+      }
+    };
+
+    const puffIn = (cards) => {
+      cards.forEach(card => {
+        card.style.opacity = '';
+        card.style.transform = '';
+        card.classList.add('puff-in');
+      });
+      return sleep(400).then(() => {
+        cards.forEach(card => card.classList.remove('puff-in'));
+      });
+    };
+
+    const runCycle = async () => {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      const cards = getCards();
+      if (cards.length === 0) {
+        isAnimating = false;
+        return;
+      }
+
+      await vibrateAll(cards);
+
+      const pairs = createPairs(cards);
+
+      for (const pair of pairs) {
+        if (pair.length === 2) {
+          await puffOut(pair);
+          swapPositions(pair[0], pair[1]);
+          await puffIn(pair);
+        } else if (pair.length === 1) {
+          await puffOut(pair);
+          await puffIn(pair);
+        }
+        await sleep(80);
+      }
+
+      isAnimating = false;
+      cycleTimeout = setTimeout(runCycle, 3000 + Math.random() * 1000);
+    };
+
+    cycleTimeout = setTimeout(runCycle, 3000);
+
+    return () => {
+      clearTimeout(cycleTimeout);
+      const cards = getCards();
+      cards.forEach(card => {
+        card.classList.remove('vibrate', 'puff-out', 'puff-in');
+        card.style.opacity = '';
+        card.style.transform = '';
+      });
+    };
+  }, []);
+
   return (
     <section className="about" id="about">
       <div className="container">
@@ -160,7 +283,7 @@ export default function About() {
 
           <div className="about-tech reveal reveal-delay-2">
             <h3>// Tools</h3>
-            <div className="tech-grid">
+            <div className="tech-grid" ref={techGridRef}>
               {techStack.map((tech, index) => (
                 <div
                   className={`tech-card reveal reveal-delay-${index + 1}`}
