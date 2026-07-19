@@ -30,13 +30,12 @@ const projects = [
     image: '/projects/chess-ss.png',
   },
   {
-    title: 'Dynamic Weather Dashboard',
+    title: 'Chrona',
     description:
-      'A responsive weather dashboard leveraging the OpenWeatherMap REST API with async/await data fetching patterns. Features dynamic DOM updates, geolocation support, and weather-adaptive UI theming for an immersive experience.',
-    tags: ['JavaScript', 'REST API', 'Async/Await', 'DOM'],
-    repo: 'https://github.com/MEPHiSTO126/Weather',
-    live: 'https://mephisto126.github.io/Weather/',
-    image: '/projects/weather-ss.png',
+      'A premium full-stack e-commerce storefront built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4. Features dynamic live search, geolocation-based smart shipping, Zustand state management, glassmorphic UI, and a comprehensive checkout flow with payment integration.',
+    tags: ['Next.js', 'React 19', 'TypeScript', 'Tailwind CSS v4', 'Zustand'],
+    repo: 'https://github.com/MEPHiSTO126/chrona-frontend',
+    image: '/projects/chrona-ss.png',
   },
 ];
 
@@ -60,7 +59,7 @@ export default function Projects() {
             height={420}
             cardDistance={40}
             verticalDistance={50}
-            delay={5000}
+            delay={2000}
             pauseOnHover={true}
             skewAmount={5}
             easing="linear"
