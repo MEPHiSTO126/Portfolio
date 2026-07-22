@@ -82,7 +82,7 @@ const CardSwap = ({
   const intervalRef = useRef();
   const container = useRef(null);
   const isFastForwarding = useRef(false);
-  const restartAfterFastForward = useRef(false);
+  const isPaused = useRef(false);
 
   const doSwap = useCallback((cfg) => {
     if (order.current.length < 2) return Promise.resolve();
@@ -144,29 +144,34 @@ const CardSwap = ({
     });
   }, [refs, cardDistance, verticalDistance]);
 
+  const startInterval = useCallback(() => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = window.setInterval(() => {
+      if (!isFastForwarding.current && !isPaused.current) {
+        doSwap(config);
+      }
+    }, delay);
+  }, [doSwap, config, delay]);
+
+  const pause = useCallback(() => {
+    isPaused.current = true;
+    tlRef.current?.pause();
+  }, []);
+
+  const resume = useCallback(() => {
+    isPaused.current = false;
+    tlRef.current?.play();
+  }, []);
+
   useEffect(() => {
     const total = refs.length;
     refs.forEach((r, i) => placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount));
 
-    const swap = () => {
-      if (!isFastForwarding.current) {
-        doSwap(config);
-      }
-    };
-
-    swap();
-    intervalRef.current = window.setInterval(swap, delay);
+    doSwap(config);
+    startInterval();
 
     if (pauseOnHover) {
       const node = container.current;
-      const pause = () => {
-        tlRef.current?.pause();
-        clearInterval(intervalRef.current);
-      };
-      const resume = () => {
-        tlRef.current?.play();
-        intervalRef.current = window.setInterval(swap, delay);
-      };
       node.addEventListener('mouseenter', pause);
       node.addEventListener('mouseleave', resume);
       return () => {
@@ -189,20 +194,13 @@ const CardSwap = ({
     clearInterval(intervalRef.current);
     tlRef.current?.kill();
 
-    const stepsToReachFront = posInOrder;
-    for (let step = 0; step < stepsToReachFront; step++) {
+    for (let step = 0; step < posInOrder; step++) {
       await doSwap(fastConfig);
     }
 
     isFastForwarding.current = false;
-    restartAfterFastForward.current = true;
-
-    intervalRef.current = window.setInterval(() => {
-      if (!isFastForwarding.current) {
-        doSwap(config);
-      }
-    }, delay);
-  }, [doSwap, config, fastConfig, delay]);
+    startInterval();
+  }, [doSwap, fastConfig, startInterval]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement(child)

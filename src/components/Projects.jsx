@@ -35,6 +35,7 @@ const projects = [
       'A premium full-stack e-commerce storefront built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4. Features dynamic live search, geolocation-based smart shipping, Zustand state management, glassmorphic UI, and a comprehensive checkout flow with payment integration.',
     tags: ['Next.js', 'React 19', 'TypeScript', 'Tailwind CSS v4', 'Zustand'],
     repo: 'https://github.com/MEPHiSTO126/chrona-frontend',
+    live: 'https://chrona-xi-seven.vercel.app/',
     image: '/projects/chrona-ss.png',
   },
 ];
@@ -59,7 +60,7 @@ export default function Projects() {
             height={420}
             cardDistance={40}
             verticalDistance={50}
-            delay={2000}
+            delay={4000}
             pauseOnHover={true}
             skewAmount={5}
             easing="linear"

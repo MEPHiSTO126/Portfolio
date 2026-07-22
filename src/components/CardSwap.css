@@ -13,9 +13,20 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
   background: var(--bg-card);
   box-shadow: var(--card-shadow);
-  overflow: hidden;
   transform-style: preserve-3d;
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .card-swap-container {
+    transform: scale(0.78);
+  }
+}
+
+@media (max-width: 480px) {
+  .card-swap-container {
+    transform: scale(0.55);
+  }
 }
