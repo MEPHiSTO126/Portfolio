@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .about-text h2 {
@@ -56,7 +56,13 @@
   50% { opacity: 0.7; box-shadow: 0 0 0 8px rgba(57, 255, 20, 0); }
 }
 
-/* ── Tech Stack Grid ── */
+/* ── Tech Stack Marquee ── */
+
+.about-tech {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
 
 .about-tech h3 {
   font-family: var(--font-mono);
@@ -66,84 +72,36 @@
   letter-spacing: 1px;
 }
 
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.tech-card {
+.tech-loop {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 20px 12px;
-  background: var(--bg-card);
-  border: 1px solid transparent;
-  border-radius: var(--border-radius);
-  transition: all var(--transition-medium);
-  cursor: default;
-  position: relative;
+  justify-content: space-evenly;
+  flex: 1;
+  gap: 18px;
+  min-width: 0;
 }
 
-.tech-card:hover {
-  border-color: var(--accent-border);
-  box-shadow: var(--glow);
-  transform: translateY(-4px);
-  background: var(--bg-card-hover);
-  z-index: 10;
+.tech-loop__row {
+  min-width: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 12px 0;
 }
 
-@keyframes vibrate {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  10% { transform: translate(-1px, 0.5px) rotate(-0.5deg); }
-  20% { transform: translate(1px, -0.5px) rotate(0.5deg); }
-  30% { transform: translate(-0.5px, 1px) rotate(0deg); }
-  40% { transform: translate(0.5px, -1px) rotate(0.5deg); }
-  50% { transform: translate(-1px, 0.5px) rotate(-0.5deg); }
-  60% { transform: translate(1px, -0.5px) rotate(0deg); }
-  70% { transform: translate(-0.5px, 1px) rotate(0.5deg); }
-  80% { transform: translate(0.5px, -1px) rotate(-0.5deg); }
-  90% { transform: translate(-1px, -0.5px) rotate(0deg); }
+.tech-loop__row .logoloop__node svg {
+  width: 46px;
+  height: 46px;
+  display: block;
 }
 
-@keyframes puffOut {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(0); opacity: 0; }
-}
-
-@keyframes puffIn {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.tech-card.vibrate {
-  animation: vibrate 0.6s ease-in-out;
-}
-
-.tech-card.puff-out {
-  animation: puffOut 0.4s ease-in-out forwards;
-}
-
-.tech-card.puff-in {
-  animation: puffIn 0.4s ease-in-out forwards;
-}
-
-.tech-card.swapping {
-  transition: transform 0.4s ease-in-out;
-}
-
-.tech-card svg,
-.tech-card img {
-  width: 36px;
-  height: 36px;
-}
-
-.tech-card span {
+.tech-loop__row .logoloop__label {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
   color: var(--text-secondary);
-  text-align: center;
+  opacity: 1;
 }
 
 @media (max-width: 1024px) {
@@ -153,8 +111,3 @@
   }
 }
 
-@media (max-width: 480px) {
-  .tech-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
